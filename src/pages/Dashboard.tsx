@@ -25,4 +25,12 @@ export default function Dashboard() {
         <div className="grid">
           <div className="card"><strong>Name:</strong> {profile.full_name}</div>
           <div className="card"><strong>Role:</strong> {profile.role}</div>
-          <div className="
+          <div className="card"><strong>Department:</strong> {profile.department_id}</div>
+          <div className="card"><strong>Part:</strong> {profile.part_id}</div>
+          <div className="card"><strong>Shift:</strong> {profile.shift_id}</div>
+        </div>
+      )}
+      <p className="muted">Access is filtered by RLS automatically based on your role and shift.</p>
+    </div>
+  )
+}
