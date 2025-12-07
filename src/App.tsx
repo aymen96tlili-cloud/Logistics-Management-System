@@ -10,7 +10,7 @@ function App() {
       const { data, error } = await supabase
         .from("users")
         .select("id, full_name, part_id, shift_id")
-        .eq("auth_user_id", "ef369cad-3ba6-49e2-aeae-1c263ce6bcf");
+        .eq("auth_user_id", "ef369cad-3ba6-49e2-aeae-1c2c63ce6bcf");
 
       if (error) {
         console.error("Supabase error:", error);
