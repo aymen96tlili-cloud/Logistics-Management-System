@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -19,11 +22,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./
 
       - name: Build project
         run: npm run build
-        working-directory: ./
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
