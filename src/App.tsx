@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 
 function App() {
-  const [users, setUsers] = useState<any[]>([]);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,7 +14,8 @@ function App() {
       if (error) {
         console.error("Supabase error:", error);
       } else {
-        setUsers(data || []);
+        // نعرض أول صف فقط للتأكد
+        setUser(data && data.length > 0 ? data[0] : null);
       }
 
       setLoading(false);
@@ -27,15 +28,16 @@ function App() {
     <div>
       <h1>Dashboard</h1>
       {loading ? (
-        <p>Loading users...</p>
-      ) : users.length > 0 ? (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>
-              <strong>{user.full_name}</strong> — {user.role} (Part: {user.part_id}, Shift: {user.shift_id})
-            </li>
-          ))}
-        </ul>
+        <p>Loading user...</p>
+      ) : user ? (
+        <div>
+          <p><strong>ID:</strong> {user.id}</p>
+          <p><strong>Name:</strong> {user.full_name}</p>
+          <p><strong>Role:</strong> {user.role}</p>
+          <p><strong>Part:</strong> {user.part_id}</p>
+          <p><strong>Shift:</strong> {user.shift_id}</p>
+          <p><strong>Auth User ID:</strong> {user.auth_user_id}</p>
+        </div>
       ) : (
         <p>No users found.</p>
       )}
