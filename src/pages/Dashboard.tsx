@@ -1,36 +1,29 @@
-import { useEffect, useState } from 'react'
-import { supabase } from '../supabaseClient'
+import React, { useEffect, useState } from "react";
+import { supabase } from "../supabaseClient";
+import UserCard from "../components/UserCard";
+import styles from "../styles/dashboard.module.css";
 
-export default function Dashboard() {
-  const [profile, setProfile] = useState<any>(null)
+function Dashboard() {
+  const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    const load = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-      const { data } = await supabase
-        .from('users')
-        .select('id, full_name, role, department_id, part_id, shift_id')
-        .eq('auth_user_id', user.id)
-        .single()
-      setProfile(data)
-    }
-    load()
-  }, [])
+    const fetchUsers = async () => {
+      const { data, error } = await supabase.from("users").select("*");
+      if (!error) setUsers(data || []);
+    };
+    fetchUsers();
+  }, []);
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      {!profile ? <p>Loading profile...</p> : (
-        <div className="grid">
-          <div className="card"><strong>Name:</strong> {profile.full_name}</div>
-          <div className="card"><strong>Role:</strong> {profile.role}</div>
-          <div className="card"><strong>Department:</strong> {profile.department_id}</div>
-          <div className="card"><strong>Part:</strong> {profile.part_id}</div>
-          <div className="card"><strong>Shift:</strong> {profile.shift_id}</div>
-        </div>
-      )}
-      <p className="muted">Access is filtered by RLS automatically based on your role and shift.</p>
+    <div className={styles.dashboardContainer}>
+      <h1 className={styles.dashboardTitle}>Dashboard</h1>
+      <div className={styles.userGrid}>
+        {users.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
+
+export default Dashboard;
