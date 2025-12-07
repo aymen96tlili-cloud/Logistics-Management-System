@@ -1,0 +1,55 @@
+/* dashboard.css */
+
+/* الأساسيات */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.user-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  color: #fff;
+}
+
+/* 🎯 ألوان حسب الدور */
+.role-Operateur {
+  background-color: #3498db; /* أزرق */
+}
+
+.role-TeamLeader {
+  background-color: #27ae60; /* أخضر */
+}
+
+.role-Supervisor {
+  background-color: #e67e22; /* برتقالي */
+}
+
+.role-SousDirecteur {
+  background-color: #8e44ad; /* بنفسجي */
+}
+
+/* النصوص */
+.user-card p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
