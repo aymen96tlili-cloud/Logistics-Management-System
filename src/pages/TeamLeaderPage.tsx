@@ -18,7 +18,7 @@ const TeamLeaderPage: React.FC = () => {
 const { data, error } = await supabase
   .from("users")
   .select("id, full_name, part_id, shift_id, role")
-  .eq("auth_user_id", "ef369cad-39b2-4eae-eaae-1c263c4d2f2b");
+  .eq("auth_user_id", "ef369cad-3ba6-49e2-aeae-1c2c63ce6bcf");
 
       if (error) {
         console.error("Supabase error:", error);
