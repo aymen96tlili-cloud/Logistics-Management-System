@@ -11,26 +11,17 @@ function Dashboard() {
   useEffect(() => {
     const fetchUsers = async () => {
       const { data, error } = await supabase.from("users").select("*");
-      if (error) {
-        console.error("Supabase error:", error);
-      } else {
-        setUsers(data || []);
-      }
+      if (!error) setUsers(data || []);
       setLoading(false);
     };
-
     fetchUsers();
   }, []);
 
   return (
     <div style={{ display: "flex" }}>
-      {/* الشريط الجانبي */}
       <Sidebar />
-
-      {/* المحتوى الرئيسي */}
       <main style={{ marginLeft: "220px", padding: "2rem", flex: 1 }}>
         <h1 className={styles.dashboardTitle}>Dashboard</h1>
-
         {loading ? (
           <p>Loading users...</p>
         ) : users.length > 0 ? (
