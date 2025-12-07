@@ -15,10 +15,10 @@ const TeamLeaderPage: React.FC = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const { data, error } = await supabase
-        .from("users")
-        .select("id, full_name, part_id, shift_id, role")
-        .eq("auth_user_id", "ef369cad-39b2-4eae-eaae-1c263c4d2f2b");
+const { data, error } = await supabase
+  .from("users")
+  .select("id, full_name, part_id, shift_id, role")
+  .eq("auth_user_id", "ef369cad-39b2-4eae-eaae-1c263c4d2f2b");
 
       if (error) {
         console.error("Supabase error:", error);
